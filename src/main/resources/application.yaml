@@ -1,4 +1,4 @@
 translate:
     base:
         apiKey: YOUR_API_KEY
-        url: https://api-free.deepl.com/v2/translate
+        url: https://api-free.deepl.com/v2/translate?target_lang=
