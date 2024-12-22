@@ -1,0 +1,16 @@
+### Get Support Language
+GET http://localhost:8080/api/translator/support-language
+Content-Type: application/json
+
+###
+
+### Text Translation
+POST http://localhost:8080/api/translator
+Content-Type: application/json
+
+{
+  "text": "HELLO",
+  "targetLanguage": "DANISH"
+}
+
+###
