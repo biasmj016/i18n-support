@@ -42,10 +42,9 @@ public enum SourceLanguage {
         return code;
     }
 
-    public static String fromCodeOrName(String language) {
+    public static SourceLanguage fromCodeOrName(String language) {
         return Stream.of(values())
                 .filter(lang -> lang.code.equalsIgnoreCase(language) || lang.name().equalsIgnoreCase(language))
-                .map(SourceLanguage::getCode)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Unknown language code or name: " + language));
     }

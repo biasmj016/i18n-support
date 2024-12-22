@@ -8,11 +8,11 @@ class SourceLanguageTest {
 
     @Test
     void fromCodeOrName() {
-        assertEquals("EN", SourceLanguage.fromCodeOrName("EN"));
-        assertEquals("FR", SourceLanguage.fromCodeOrName("FR"));
+        assertEquals(SourceLanguage.ENGLISH, SourceLanguage.fromCodeOrName("EN"));
+        assertEquals(SourceLanguage.FRENCH, SourceLanguage.fromCodeOrName("FR"));
 
-        assertEquals("EN", SourceLanguage.fromCodeOrName("ENGLISH"));
-        assertEquals("FR", SourceLanguage.fromCodeOrName("FRENCH"));
+        assertEquals(SourceLanguage.ENGLISH, SourceLanguage.fromCodeOrName("ENGLISH"));
+        assertEquals(SourceLanguage.FRENCH, SourceLanguage.fromCodeOrName("FRENCH"));
     }
 
     @Test
