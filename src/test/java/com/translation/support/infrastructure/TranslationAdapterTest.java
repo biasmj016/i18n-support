@@ -1,5 +1,10 @@
 package com.translation.support.infrastructure;
 
+import com.translation.support.application.request.TranslateRequest;
+import com.translation.support.application.response.TranslateResponse;
+import com.translation.support.domain.Translation;
+import com.translation.support.infrastructure.out.config.TranslateConfiguration;
+import com.translation.support.infrastructure.out.TranslationAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -46,7 +51,7 @@ class TranslationAdapterTest {
 
     @Test
     public void fetch() {
-        TranslationAdapter.TranslateRequest request = new TranslationAdapter.TranslateRequest(List.of("Hello"), "KO");
+        TranslateRequest request = new TranslateRequest(List.of("Hello"), "KO");
 
         when(webClient.post()).thenReturn(requestBodyUriSpec);
         when(requestBodyUriSpec.uri(any(String.class))).thenReturn(requestBodyUriSpec);
@@ -54,9 +59,9 @@ class TranslationAdapterTest {
         when(requestBodyUriSpec.bodyValue(request)).thenReturn(requestHeadersSpec);
         when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
         when(responseSpec.onStatus(any(), any())).thenReturn(responseSpec);
-        when(responseSpec.bodyToMono(TranslationAdapter.TranslateResponse.class)).thenReturn(Mono.just(new TranslationAdapter.TranslateResponse(List.of(new TranslationAdapter.TranslateResponse.Translation("안녕하세요", "EN")))));
+        when(responseSpec.bodyToMono(TranslateResponse.class)).thenReturn(Mono.just(new TranslateResponse(List.of(new Translation("안녕하세요", "EN")))));
 
-        TranslationAdapter.TranslateResponse response = translationHttpAdapter.fetch(request);
+        TranslateResponse response = translationHttpAdapter.fetch(request);
 
         System.out.println(response);
         assertNotNull(response);
@@ -66,7 +71,7 @@ class TranslationAdapterTest {
 
     @Test
     public void fetchError() {
-        TranslationAdapter.TranslateRequest request = new TranslationAdapter.TranslateRequest(List.of("Hello"), "KO");
+        TranslateRequest request = new TranslateRequest(List.of("Hello"), "KO");
 
         when(webClient.post()).thenReturn(requestBodyUriSpec);
         when(requestBodyUriSpec.uri(any(String.class))).thenReturn(requestBodyUriSpec);
@@ -74,7 +79,7 @@ class TranslationAdapterTest {
         when(requestBodyUriSpec.bodyValue(request)).thenReturn(requestHeadersSpec);
         when(requestHeadersSpec.retrieve()).thenReturn(responseSpec);
         when(responseSpec.onStatus(any(), any())).thenReturn(responseSpec);
-        when(responseSpec.bodyToMono(TranslationAdapter.TranslateResponse.class)).thenReturn(Mono.error(new RuntimeException("API Error")));
+        when(responseSpec.bodyToMono(TranslateResponse.class)).thenReturn(Mono.error(new RuntimeException("API Error")));
 
         assertThrows(RuntimeException.class, () -> translationHttpAdapter.fetch(request));
     }

@@ -1,5 +1,6 @@
 package com.translation.support.infrastructure;
 
+import com.translation.support.infrastructure.out.config.TranslateConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,6 @@
 package com.translation.support;
 
-import com.translation.support.infrastructure.TranslateConfiguration;
+import com.translation.support.infrastructure.out.config.TranslateConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

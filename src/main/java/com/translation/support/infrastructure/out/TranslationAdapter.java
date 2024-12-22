@@ -1,14 +1,14 @@
-package com.translation.support.infrastructure;
+package com.translation.support.infrastructure.out;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.translation.support.application.request.TranslateRequest;
+import com.translation.support.application.response.TranslateResponse;
+import com.translation.support.infrastructure.out.config.TranslateConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.List;
 
 public interface TranslationAdapter {
     TranslateResponse fetch(TranslateRequest request);
@@ -43,25 +43,5 @@ public interface TranslationAdapter {
                     .blockOptional()
                     .orElseThrow(() -> new RuntimeException("Translation Fetch Error"));
         }
-    }
-
-
-    record TranslateRequest(
-            @JsonProperty("text")
-            List<String> text,
-            @JsonProperty("target_lang")
-            String targetLanguage
-    ) {
-        @Override
-        public String toString() {
-            return "target language -> '%s', text -> %s".formatted(targetLanguage, text);
-        }
-    }
-
-    record TranslateResponse(List<Translation> translations) {
-        record Translation(
-                @JsonProperty("text") String text,
-                @JsonProperty("detected_source_language") String sourceLanguage
-        ) { }
     }
 }
