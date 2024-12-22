@@ -1,4 +1,4 @@
-package com.translation.support.infrastructure;
+package com.translation.support.infrastructure.out;
 
 import com.translation.support.infrastructure.out.config.TranslateConfiguration;
 import org.junit.jupiter.api.Test;

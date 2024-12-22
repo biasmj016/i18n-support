@@ -1,10 +1,9 @@
-package com.translation.support.infrastructure;
+package com.translation.support.infrastructure.out;
 
 import com.translation.support.application.request.TranslateRequest;
 import com.translation.support.application.response.TranslateResponse;
 import com.translation.support.domain.Translation;
 import com.translation.support.infrastructure.out.config.TranslateConfiguration;
-import com.translation.support.infrastructure.out.TranslationAdapter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
